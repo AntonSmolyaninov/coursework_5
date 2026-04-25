@@ -1,9 +1,8 @@
 import os
 from datetime import timedelta
 from pathlib import Path
+from typing import List
 
-import stripe
-from celery.schedules import crontab
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -14,7 +13,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = True if os.getenv("DEBUG") else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[str] = []
 
 
 # Application definition
@@ -26,16 +25,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    'rest_framework_simplejwt',
-    'django_filters',
-    'rest_framework',
-    'drf_yasg',
-    'corsheaders',
-    'django_celery_beat',
-
-    'users',
-    'habits',
+    "rest_framework_simplejwt",
+    "django_filters",
+    "rest_framework",
+    "drf_yasg",
+    "corsheaders",
+    "django_celery_beat",
+    "users",
+    "habits",
 ]
 
 MIDDLEWARE = [
@@ -125,20 +122,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=int(os.getenv('ACCESS_TOKEN_LIFETIME', 60))),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=int(os.getenv('REFRESH_TOKEN_LIFETIME', 1))),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.getenv("ACCESS_TOKEN_LIFETIME", 60))),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=int(os.getenv("REFRESH_TOKEN_LIFETIME", 1))),
 }
 
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:3000").split(",")
 CORS_ALLOW_CREDENTIALS = True
 
 CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
 CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = "Asia/Irkutsk"
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-TELEGRAM_API_URL = f'https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}' if TELEGRAM_BOT_TOKEN else ''
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}" if TELEGRAM_BOT_TOKEN else ""

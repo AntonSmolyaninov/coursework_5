@@ -1,13 +1,13 @@
 from django.contrib import admin
-from django.urls import path, include
-from drf_yasg.views import get_schema_view
+from django.urls import include, path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
         title="Habit Tracker API",
-        default_version='v1',
+        default_version="v1",
         description="API для управления привычками",
     ),
     public=True,
@@ -15,9 +15,9 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('habits.urls')),
-    path('api/auth/', include('users.urls')),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0)),
+    path("admin/", admin.site.urls),
+    path("api/", include("habits.urls")),
+    path("api/auth/", include("users.urls")),
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0)),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0)),
 ]
