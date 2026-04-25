@@ -30,44 +30,31 @@
 - **Telegram Bot API** - отправка уведомлений
 - **drf-yasg** - документация API
 
-## 📁 Структура проекта
-coursework_5/
-├── coursework_5/ # Настройки проекта
-│ ├── init.py
-│ ├── settings.py
-│ ├── urls.py
-│ ├── celery.py
-│ ├── wsgi.py
-│ └── asgi.py
-├── users/ # Приложение пользователей
-│ ├── init.py
-│ ├── admin.py
-│ ├── apps.py
-│ ├── models.py
-│ ├── serializers.py
-│ ├── urls.py
-│ ├── views.py
-│ └── tests.py
-├── habits/ # Приложение привычек
-│ ├── init.py
-│ ├── admin.py
-│ ├── apps.py
-│ ├── models.py
-│ ├── serializers.py
-│ ├── urls.py
-│ ├── views.py
-│ ├── permissions.py
-│ ├── validators.py
-│ ├── tasks.py
-│ ├── pagination.py
-│ └── tests.py
-├── manage.py
-├── pyproject.toml
-├── .env
-├── .env.example
-├── .flake8
-├── .gitignore
-└── README.md
+# 📁 Структура проекта
+
+📦 coursework_5
+ ┣ 📂 config
+ ┃ ┣ 📜 __init__.py
+ ┃ ┣ 📜 settings.py
+ ┃ ┣ 📜 urls.py
+ ┃ ┗ 📜 celery.py
+ ┣ 📂 habits
+ ┃ ┣ 📂 migrations
+ ┃ ┣ 📜 __init__.py
+ ┃ ┣ 📜 models.py
+ ┃ ┣ 📜 views.py
+ ┃ ┣ 📜 serializers.py
+ ┃ ┣ 📜 tasks.py
+ ┃ ┗ 📜 tests.py
+ ┣ 📂 users
+ ┃ ┣ 📂 migrations
+ ┃ ┣ 📜 __init__.py
+ ┃ ┣ 📜 models.py
+ ┃ ┣ 📜 views.py
+ ┃ ┗ 📜 tests.py
+ ┣ 📜 manage.py
+ ┣ 📜 pyproject.toml
+ ┗ 📜 README.md
 
 
 ## 🚀 Установка и запуск
