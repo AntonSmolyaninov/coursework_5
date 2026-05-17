@@ -2,7 +2,6 @@ import os
 import sys
 from datetime import timedelta
 from pathlib import Path
-from typing import List
 
 from dotenv import load_dotenv
 
