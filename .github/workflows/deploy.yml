@@ -9,28 +9,30 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: "django-insecure-jsfbaa-lkspa-frt-o1r-p88pnk-wxqrmn-tm6-7"
+      DEBUG: "True"
+      ALLOWED_HOSTS: "localhost,127.0.0.1"
+      NAME: "courswork5"
+      USER: "postgres"
+      PASSWORD: "1234567890"
+      HOST: "localhost"
+      PORT: "5432"
+
     steps:
       - uses: actions/checkout@v4
-
-      - name: Create .env from secret
-        run: echo "${{ secrets.DJANGO_ENV }}" > .env
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Install dependencies
         run: |
           pip install poetry
           poetry install --no-root
-
       - name: Run migrations
         run: poetry run python manage.py migrate
-
       - name: Run tests
         run: poetry run python manage.py test
-
       - name: Run flake8
         run: poetry run flake8 --exclude=migrations --max-line-length=119
 
@@ -40,7 +42,6 @@ jobs:
     if: github.ref == 'refs/heads/finaltask'
     steps:
       - uses: actions/checkout@v4
-
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
         with:
