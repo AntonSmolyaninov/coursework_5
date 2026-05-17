@@ -6,19 +6,15 @@ on:
   pull_request:
     branches: [main, master]
 
+env:
+  CI: "true"
+  SECRET_KEY: "django-insecure-test-key-for-ci"
+  DEBUG: "True"
+  ALLOWED_HOSTS: "localhost,127.0.0.1"
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      SECRET_KEY: "django-insecure-jsfbaa-lkspa-frt-o1r-p88pnk-wxqrmn-tm6-7"
-      DEBUG: "True"
-      ALLOWED_HOSTS: "localhost,127.0.0.1"
-      NAME: "courswork5"
-      USER: "postgres"
-      PASSWORD: "1234567890"
-      HOST: "localhost"
-      PORT: "5432"
-
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -29,8 +25,6 @@ jobs:
         run: |
           pip install poetry
           poetry install --no-root
-      - name: Run migrations
-        run: poetry run python manage.py migrate
       - name: Run tests
         run: poetry run python manage.py test
       - name: Run flake8
